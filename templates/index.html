@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <style>
+        .jumbotron {
+            width: 1500px;
+            margin: 30px auto;
+        }
+    </style>
+    <script>
+        // 로딩이 완료되면
+        $(document).ready(function () {
+            hide();
+            listing();
+        });
+
+
+        function hide() {
+            $('#first').hide();
+            $('#second').hide();
+            $('#third').hide();
+        }
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/stock",
+                data: {},
+                success: function (response) {
+                    let codes = response['all_codes'];
+                    for (let i = 0; i < codes.length; i++) {
+
+                    }
+
+
+                }
+            })
+        }
+
+
+        function firstLevel() {
+            $('#btn-start').hide();
+            $('#first').show();
+        }
+
+        function secondLevel() {
+            $('#first').hide();
+            $('#second').show();
+        }
+
+        function thirdLevel() {
+            $('#second').hide();
+            $('#third').show();
+        }
+
+
+    </script>
+
+    <title>스파르타코딩클럽 | 부트스트랩 연습하기</title>
+</head>
+
+<body>
+<div class="jumbotron">
+    <h1 class="display-4">주식 종목 추천!!</h1>
+    <p class="lead">원하시는 종목을 추천합니다</p>
+    <hr class="my-4">
+
+    <div class="form-check" id="first">
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"> 코스피
+        </div>
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"> 코스닥
+        </div>
+        <button type="button" class="btn btn-success" onclick="secondLevel()">다음</button>
+    </div>
+
+    <div class="form-check" id="second">
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"> 반도체와반도체장비
+        </div>
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"> 양방향미디어와서비스
+        </div>
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5"> 자동차
+        </div>
+        <button type="button" class="btn btn-success" onclick="thirdLevel()">다음</button>
+    </div>
+
+    <div class="form-check" id="third">
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6"> 메모리
+        </div>
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault7"> 플랫폼
+        </div>
+        <div>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault8"> 전기차
+        </div>
+        <button type="button" class="btn btn-success">다음</button>
+    </div>
+
+
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" onclick="firstLevel()" id="btn-start" href="#" role="button">추천 시작</a>
+    </p>
+</div>
+</body>
+
+</html>
